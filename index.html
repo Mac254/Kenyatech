@@ -134,69 +134,113 @@
         </section>
 
         <!-- Products Section -->
-        <section class="products" id="products">
+        <section class="products section-hidden" id="products">
             <div class="container">
                 <h2 class="section-title">Our Products</h2>
-                <p class="section-description">Discover our ready-made solutions designed for African businesses</p>
-                
-                <div class="products-slider">
+                <p class="section-description">Explore our innovative solutions crafted to empower Kenya’s businesses and communities.</p>
+                <div class="products-slider" id="products-slider">
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="/assets/images/kenyapay.webp" alt="KenyaPay payment solution">
+                            <img src="/assets/images/kenyapay.webp" alt="KenyaPay payment solution" loading="lazy">
                         </div>
                         <div class="product-info">
                             <h3>KenyaPay</h3>
-                            <p>Seamless payment processing solution integrated with M-Pesa, banks, and cards.</p>
+                            <p>Seamless mobile payment platform integrating with M-Pesa for businesses across Kenya.</p>
                             <div class="product-features">
-                                <span>Payments</span>
-                                <span>E-Commerce</span>
+                                <span>M-Pesa Integration</span>
+                                <span>Secure Transactions</span>
+                                <span>Real-time Analytics</span>
                             </div>
-                            <a href="#" class="product-link">View Details</a>
+                            <a href="#" class="product-link">Learn More</a>
                         </div>
                     </div>
-                    
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="/assets/images/farmer.jpg" alt="FarmerConnect agricultural platform">
+                            <img src="/assets/images/farmer.jpg" alt="FarmerConnect agricultural platform" loading="lazy">
                         </div>
                         <div class="product-info">
                             <h3>FarmerConnect</h3>
-                            <p>Digital platform connecting farmers to markets, resources, and agricultural expertise.</p>
+                            <p>Empowering Kenyan farmers with market access, weather updates, and financial tools.</p>
                             <div class="product-features">
-                                <span>Agriculture</span>
-                                <span>Marketplace</span>
+                                <span>Market Access</span>
+                                <span>Weather Updates</span>
+                                <span>Financial Tools</span>
                             </div>
-                            <a href="#" class="product-link">View Details</a>
+                            <a href="#" class="product-link">Learn More</a>
                         </div>
                     </div>
-                    
                     <div class="product-card">
                         <div class="product-image">
-                            <img src="/assets/images/safari.jpeg" alt="SafariTrack tourism management system">
+                            <img src="/assets/images/safari.jpeg" alt="SafariTrack tourism platform" loading="lazy">
                         </div>
                         <div class="product-info">
                             <h3>SafariTrack</h3>
-                            <p>Tourism management system for tour operators, hotels, and travel agencies.</p>
+                            <p>Streamlined booking and management for Kenya’s vibrant tourism industry.</p>
                             <div class="product-features">
-                                <span>Tourism</span>
-                                <span>Management</span>
+                                <span>Easy Bookings</span>
+                                <span>Tour Management</span>
+                                <span>Customer Support</span>
                             </div>
-                            <a href="#" class="product-link">View Details</a>
+                            <a href="#" class="product-link">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/assets/images/HEALTH.jpg" alt="HealthTech medical platform" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <h3>HealthTech</h3>
+                            <p>Connecting Kenyan patients with doctors through telemedicine and health records.</p>
+                            <div class="product-features">
+                                <span>Telemedicine</span>
+                                <span>Health Records</span>
+                                <span>Appointment Booking</span>
+                            </div>
+                            <a href="#" class="product-link">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/assets/images/EDUCATION.jpeg" alt="EduPlatform learning platform" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <h3>EduPlatform</h3>
+                            <p>Digital learning solution for Kenyan schools, offering interactive content and analytics.</p>
+                            <div class="product-features">
+                                <span>Interactive Content</span>
+                                <span>Student Analytics</span>
+                                <span>Teacher Tools</span>
+                            </div>
+                            <a href="#" class="product-link">Learn More</a>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="/assets/images/RENEWABLE.jpeg" alt="GreenEnergy renewable solution" loading="lazy">
+                        </div>
+                        <div class="product-info">
+                            <h3>GreenEnergy</h3>
+                            <p>Solar-powered solutions for rural Kenyan communities, promoting sustainability.</p>
+                            <div class="product-features">
+                                <span>Solar Power</span>
+                                <span>Energy Monitoring</span>
+                                <span>Community Impact</span>
+                            </div>
+                            <a href="#" class="product-link">Learn More</a>
                         </div>
                     </div>
                 </div>
-                
                 <div class="slider-controls">
-                    <button class="prev-btn" aria-label="Previous product">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                    <button class="prev-btn" aria-label="Previous product slide">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M15 18l-6-6 6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </button>
-                    <div class="slider-dots">
-                        <span class="dot active"></span>
-                        <span class="dot"></span>
-                        <span class="dot"></span>
-                    </div>
-                    <button class="next-btn" aria-label="Next product">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                    <div id="dots-container"></div>
+                    <button class="next-btn" aria-label="Next product slide">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M9 18l6-6-6-6" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
                     </button>
                 </div>
             </div>

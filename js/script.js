@@ -63,8 +63,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const slider = document.querySelector('.products-slider');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
-    const dots = document.querySelectorAll('.dot');
+    const dotsContainer = document.querySelector('#dots-container');
+    const productCards = document.querySelectorAll('.product-card');
     let currentIndex = 0;
+    let autoSlide;
+    let touchStartX = 0;
+
+    // Dynamically create dots based on number of product cards
+    productCards.forEach((_, index) => {
+        const dot = document.createElement('span');
+        dot.className = 'dot';
+        dot.setAttribute('aria-label', `Go to product slide ${index + 1}`);
+        dot.setAttribute('tabindex', '0');
+        dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.dot');
 
     function updateSlider() {
         const cardWidth = slider.querySelector('.product-card').offsetWidth + 32; // Include gap
@@ -75,19 +89,42 @@ document.addEventListener('DOMContentLoaded', () => {
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentIndex);
         });
+        // Add brand color transition effect
+        slider.style.transition = 'background 0.3s ease-in-out';
+        slider.style.background = `linear-gradient(45deg, #005B8F, #F4A261, transparent)`;
+        setTimeout(() => {
+            slider.style.background = 'transparent';
+        }, 300);
+        // Update ARIA live region
+        slider.setAttribute('aria-label', `Showing product slide ${currentIndex + 1} of ${productCards.length}`);
+    }
+
+    function startAutoSlide() {
+        autoSlide = setInterval(() => {
+            currentIndex = (currentIndex + 1) % productCards.length;
+            updateSlider();
+        }, 5000);
+    }
+
+    function stopAutoSlide() {
+        clearInterval(autoSlide);
     }
 
     prevBtn.addEventListener('click', () => {
         if (currentIndex > 0) {
             currentIndex--;
             updateSlider();
+            stopAutoSlide();
+            startAutoSlide();
         }
     });
 
     nextBtn.addEventListener('click', () => {
-        if (currentIndex < dots.length - 1) {
+        if (currentIndex < productCards.length - 1) {
             currentIndex++;
             updateSlider();
+            stopAutoSlide();
+            startAutoSlide();
         }
     });
 
@@ -95,8 +132,63 @@ document.addEventListener('DOMContentLoaded', () => {
         dot.addEventListener('click', () => {
             currentIndex = index;
             updateSlider();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+        // Keyboard navigation for dots
+        dot.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                currentIndex = index;
+                updateSlider();
+                stopAutoSlide();
+                startAutoSlide();
+            }
         });
     });
+
+    // Swipe gestures for mobile
+    slider.addEventListener('touchstart', (e) => {
+        touchStartX = e.touches[0].clientX;
+        stopAutoSlide();
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+        const touchEndX = e.touches[0].clientX;
+        const diff = touchStartX - touchEndX;
+        if (diff > 50 && currentIndex < productCards.length - 1) {
+            currentIndex++;
+            updateSlider();
+            startAutoSlide();
+        } else if (diff < -50 && currentIndex > 0) {
+            currentIndex--;
+            updateSlider();
+            startAutoSlide();
+        }
+    });
+
+    // Pause autoplay on hover
+    slider.addEventListener('mouseover', stopAutoSlide);
+    slider.addEventListener('mouseout', startAutoSlide);
+
+    // Start autoplay
+    startAutoSlide();
+
+    // Update slider on window resize
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(updateSlider, 100);
+    });
+
+    // Add "View All Products" button
+    const viewAllBtn = document.createElement('a');
+    viewAllBtn.className = 'cta-button';
+    viewAllBtn.href = '/products';
+    viewAllBtn.textContent = 'View All Products';
+    viewAllBtn.style.cssText = 'margin-top: var(--space-lg); display: block; text-align: center;';
+    viewAllBtn.setAttribute('aria-label', 'View all KenyaTech products');
+    document.querySelector('.slider-controls').appendChild(viewAllBtn);
 
     // Contact Form Validation
     const contactForm = document.querySelector('.contact-form');
